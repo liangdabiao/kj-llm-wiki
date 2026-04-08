@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/entities/sessions_send.md",
+                "file": "wiki/synthesis/Skills深度报告.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "sessions_send"
+              "title": "Skills深度报告"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "wiki/entities/sessions_send.md",
+                "file": "wiki/synthesis/Skills深度报告.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "sessions_send 的反向链接列表"
+              "title": "Skills深度报告 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "wiki/entities/sessions_send.md",
+                "file": "wiki/synthesis/Skills深度报告.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "sessions_send 的出链列表"
+              "title": "Skills深度报告 的出链列表"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/entities/sessions_send.md",
+                "file": "wiki/synthesis/Skills深度报告.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "sessions_send 的大纲"
+              "title": "Skills深度报告 的大纲"
             }
           }
         ]
@@ -185,6 +185,8 @@
   },
   "active": "c3d5b420fecd169a",
   "lastOpenFiles": [
+    "wiki/entities/sessions_send.md",
+    "wiki/synthesis/Skills深度报告.md",
     "docs/wiki/entities/Claude-to-IM-skill.html",
     "docs/wiki/entities/last30days.html",
     "docs/wiki/entities/self-improving-agent.html",
@@ -203,7 +205,6 @@
     "node_modules/glob/dist/esm/walker.js",
     "node_modules/glob/dist/esm/walker.d.ts.map",
     "node_modules/glob/dist/esm/walker.d.ts",
-    "node_modules/glob/dist/esm/processor.js.map",
     "node_modules/minimatch/README.md",
     "node_modules/minimatch/LICENSE.md",
     "index.md",
@@ -220,7 +221,6 @@
     "hexo-site/README.md",
     "apparent-accretion/node_modules/property-information/readme.md",
     "apparent-accretion/node_modules/crossws/README.md",
-    "apparent-accretion/node_modules/mdn-data/README.md",
     "apparent-accretion/src/assets/background.svg",
     "apparent-accretion/src/assets/astro.svg",
     "apparent-accretion/public/favicon.svg",
