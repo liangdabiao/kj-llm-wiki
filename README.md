@@ -4,6 +4,8 @@
 
 基于 [Karpathy 的 llm-wiki 方法论](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)：知识被**编译一次，持续维护**，而不是每次查询都从原始文档重新推导。
 
+特别感谢佬友：https://linux.do/
+
 ## 核心思路
 
 传统 RAG 的问题：每次问问题，AI 都要从头阅读原始文件，没有积累。
