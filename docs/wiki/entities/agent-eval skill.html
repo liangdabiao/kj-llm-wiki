@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>agent-eval skill - AI 技术学习笔记</title>
+  <meta name="description" content="个人知识库公开站点，涵盖 OpenClaw、跨境电商AI、智能客服、选品方法论等主题">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.4.0/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-left">
+        <a href="/" class="logo">📚 AI 技术学习笔记</a>
+      </div>
+      <nav class="header-nav">
+        <a href="/">首页</a>
+        <a href="/wiki/entities/">实体</a>
+        <a href="/wiki/topics/">主题</a>
+        <a href="/wiki/sources/">素材</a>
+        <button class="search-btn" onclick="toggleSearch()">🔍 搜索</button>
+      </nav>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+  </header>
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="搜索知识库..." oninput="searchWiki(this.value)">
+      <button onclick="toggleSearch()">✕</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+  
+  <main class="container">
+    <div class="content-wrapper">
+      <article class="wiki-page">
+        <header class="page-header">
+          <h1>agent-eval skill</h1>
+          <div class="page-meta">
+            <span class="category">实体</span>
+            <span class="backlinks-count">1 个反向链接</span>
+          </div>
+        </header>
+        
+        <div class="page-content">
+          <h1>agent-eval skill</h1>
+<blockquote>
+<p>Agent评估能力，用于系统化测试和评估AI Agent的表现。</p>
+</blockquote>
+<h2>基本信息</h2>
+<ul>
+<li><strong>类型</strong>：OpenClaw Skill</li>
+<li><strong>作用</strong>：构建测试用例、执行测试、生成评估报告</li>
+<li><strong>核心架构</strong>：每个Agent独立目录（配置+规则+结果）</li>
+</ul>
+<hr>
+<h2>核心架构</h2>
+<pre><code class="language-text">📁 agent-eval skill
+├── 📁 agents/
+│   ├── 📁 bank-manager/
+│   │   ├── 📄 config.yaml
+│   │   └── 📄 eval_rule.md
+│   └── 📁 default/
+│       ├── 📄 config.yaml
+│       └── 📄 eval_rule.md
+├── 📁 scripts/
+│   ├── 📄 run-agent-eval.py
+│   └── 📄 summarize-results.py
+└── 📁 references/
+    ├── 📄 result-schema.json
+    └── 📄 用例测试流程-todo.md</code></pre><hr>
+<h2>设计原则</h2>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent隔离</td>
+<td>每个Agent独立目录</td>
+</tr>
+<tr>
+<td>规则先行</td>
+<td>必须先创建eval_rule.md才能测试</td>
+</tr>
+<tr>
+<td>模型生成</td>
+<td>测试用例和JSON结果由大模型生成</td>
+</tr>
+<tr>
+<td>反馈闭环</td>
+<td>测试结束发送工作反馈（不透露测试）</td>
+</tr>
+<tr>
+<td>每轮创建</td>
+<td>每轮测试创建UC-XXX-todo.md</td>
+</tr>
+<tr>
+<td>围绕todo</td>
+<td>整个测试过程围绕todo.md执行和勾选</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>测试流程</h2>
+<pre><code class="language-text">1️⃣ 检查配置 → agents/&lt;agent-id&gt;/config.yaml
+   ↓
+2️⃣ 读取规则 → agents/&lt;agent-id&gt;/eval_rule.md
+   ↓
+3️⃣ 生成用例 → user_cases/&lt;agent-id&gt;/UC-XXX.md
+   ↓
+4️⃣ 创建todo → user_cases/&lt;agent-id&gt;/UC-XXX-todo.md ⭐
+   ↓
+5️⃣ 执行测试 → 围绕todo.md勾选执行
+   ↓
+6️⃣ 发送反馈 → 工作反馈格式（不透露测试）
+   ↓
+7️⃣ 生成JSON → results/UC-XXX-result.json</code></pre><hr>
+<h2>不同素材中的观点</h2>
+<h3>2026-04-08 OpenClaw构建自我迭代AI助手</h3>
+<ul>
+<li>围绕todo.md执行和勾选</li>
+<li>测试结束发送工作反馈（不透露测试）</li>
+<li>通过自主交流完成Agent升级</li>
+</ul>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="/wiki/entities\AgentToAgent.html" class="wiki-link">AgentToAgent</a> — Agent间通信</li>
+<li><a href="/wiki/entities\多Agent协作.html" class="wiki-link">多Agent协作</a> — 多Agent架构</li>
+</ul>
+
+        </div>
+        
+        <footer class="page-footer">
+          <div class="back-links">
+            <h3>🔗 反向链接 (1)</h3>
+            <p class="backlinks-desc">以下页面链接到了本页：</p>
+            <ul class="backlinks-list">
+              <li><a href="/wiki/sources\2026-04-08-OpenClaw构建自我迭代AI助手.html">2026-04-08 OpenClaw构建自我迭代AI助手</a></li>
+            </ul>
+          </div>
+          <div class="source-link">
+            <a href="https://github.com/yourusername/kllm-wiki/blob/main/wiki/entities\agent-eval skill.md" target="_blank">
+              📄 查看原始 Markdown
+            </a>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </main>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 AI 技术学习笔记 · Powered by llm-wiki & Cloudflare Pages</p>
+    </div>
+  </footer>
+  
+  <script>
+    window.wikiIndex = [{"title":"AI 技术学习笔记 — 知识库总览","path":"overview.html","category":"其他","date":"2026-04-08"},{"title":"主题：跨境电商AI自动化","path":"topics\\跨境电商AI自动化.html","category":"主题","date":"2026-04-08"},{"title":"主题：智能客服体系","path":"topics\\智能客服体系.html","category":"主题","date":"2026-04-08"},{"title":"主题：OpenClaw生态","path":"topics\\OpenClaw生态.html","category":"主题","date":"2026-04-08"},{"title":"主题：AI选品方法论","path":"topics\\AI选品方法论.html","category":"主题","date":"2026-04-08"},{"title":"2026-04-08 龙虾","path":"sources\\2026-04-08-龙虾.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 飞书系列Skills","path":"sources\\2026-04-08-飞书系列Skills.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商龙虾版","path":"sources\\2026-04-08-跨境电商龙虾版.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商工作","path":"sources\\2026-04-08-跨境电商工作.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商×OpenClaw完整自动化方案","path":"sources\\2026-04-08-跨境电商完整自动化方案.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商全部数据","path":"sources\\2026-04-08-跨境电商全部数据.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商skill","path":"sources\\2026-04-08-跨境电商skill.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境卖家的六大痛点","path":"sources\\2026-04-08-跨境卖家六大痛点.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 群蹲需求","path":"sources\\2026-04-08-群蹲需求.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 给OpenClaw开天眼","path":"sources\\2026-04-08-给OpenClaw开天眼.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 纯代码小白30天搭亚马逊AI系统","path":"sources\\2026-04-08-纯代码小白30天搭亚马逊AI系统.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 目录导航","path":"sources\\2026-04-08-目录导航.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 用OpenClaw搭跨境电商团队","path":"sources\\2026-04-08-用OpenClaw搭跨境电商团队.html","category":"素材","date":"2026-04-08"},{"title":"最值得安装的8个Skill技能","path":"sources\\2026-04-08-最值得安装的8个Skill技能.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 智能客服系统","path":"sources\\2026-04-08-智能客服系统.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 市场&营销人怎么玩虾","path":"sources\\2026-04-08-市场&营销人怎么玩虾.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 基于OpenClaw构建RAG智能客服系统","path":"sources\\2026-04-08-基于OpenClaw构建RAG智能客服.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 基于CC的浏览器自动化选型推荐","path":"sources\\2026-04-08-基于CC的浏览器自动化选型推荐.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 一套可复制的正确选品底层逻辑","path":"sources\\2026-04-08-一套可复制的正确选品底层逻辑.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 WhatsApp智能客服机器人","path":"sources\\2026-04-08-WhatsApp智能客服机器人.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 QBotClaw 浏览器龙虾","path":"sources\\2026-04-08-QBotClaw-浏览器龙虾.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 OpenClaw跨境电商必装技能","path":"sources\\2026-04-08-OpenClaw跨境电商必装技能.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 OpenClaw构建自我迭代AI助手","path":"sources\\2026-04-08-OpenClaw构建自我迭代AI助手.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 OpenClaw从新手到进阶","path":"sources\\2026-04-08-OpenClaw从新手到进阶.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 CRM系统说明","path":"sources\\2026-04-08-CRM系统说明.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 AI选品实战指南","path":"sources\\2026-04-08-AI选品实战指南.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 9格分镜法","path":"sources\\2026-04-08-9格分镜法.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 15款跨境电商运营工具","path":"sources\\2026-04-08-15款跨境电商运营工具.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 13个AI助手","path":"sources\\2026-04-08-13个AI助手.html","category":"素材","date":"2026-04-08"},{"title":"飞书多维表格","path":"entities\\飞书多维表格.html","category":"实体","date":"2026-04-08"},{"title":"飞书AI系统","path":"entities\\飞书AI系统.html","category":"实体","date":"2026-04-08"},{"title":"选品SOP","path":"entities\\选品SOP.html","category":"实体","date":"2026-04-08"},{"title":"端侧智能体","path":"entities\\端侧智能体.html","category":"实体","date":"2026-04-08"},{"title":"浏览器龙虾","path":"entities\\浏览器龙虾.html","category":"实体","date":"2026-04-08"},{"title":"浏览器自动化","path":"entities\\浏览器自动化.html","category":"实体","date":"2026-04-08"},{"title":"智能客服","path":"entities\\智能客服.html","category":"实体","date":"2026-04-08"},{"title":"微信Clawbot","path":"entities\\微信Clawbot.html","category":"实体","date":"2026-04-08"},{"title":"多Agent协作","path":"entities\\多Agent协作.html","category":"实体","date":"2026-04-08"},{"title":"workspace","path":"entities\\workspace.html","category":"实体","date":"2026-04-08"},{"title":"WhatsApp客服","path":"entities\\WhatsApp客服.html","category":"实体","date":"2026-04-08"},{"title":"VOC分析","path":"entities\\VOC分析.html","category":"实体","date":"2026-04-08"},{"title":"SOUL.md","path":"entities\\SOUL.html","category":"实体","date":"2026-04-08"},{"title":"Skills","path":"entities\\Skills.html","category":"实体","date":"2026-04-08"},{"title":"skill-creator","path":"entities\\skill-creator.html","category":"实体","date":"2026-04-08"},{"title":"Skill Vetter","path":"entities\\Skill Vetter.html","category":"实体","date":"2026-04-08"},{"title":"sessions_send","path":"entities\\sessions_send.html","category":"实体","date":"2026-04-08"},{"title":"self-improving-agent","path":"entities\\self-improving-agent.html","category":"实体","date":"2026-04-08"},{"title":"RAG","path":"entities\\RAG.html","category":"实体","date":"2026-04-08"},{"title":"QBotClaw","path":"entities\\QBotClaw.html","category":"实体","date":"2026-04-08"},{"title":"OpenViking","path":"entities\\OpenViking.html","category":"实体","date":"2026-04-08"},{"title":"OpenClaw","path":"entities\\OpenClaw.html","category":"实体","date":"2026-04-08"},{"title":"NotebookLM","path":"entities\\NotebookLM.html","category":"实体","date":"2026-04-08"},{"title":"Memory 记忆系统","path":"entities\\Memory.html","category":"实体","date":"2026-04-08"},{"title":"last30days","path":"entities\\last30days.html","category":"实体","date":"2026-04-08"},{"title":"HEARTBEAT.md","path":"entities\\HEARTBEAT.html","category":"实体","date":"2026-04-08"},{"title":"GEO","path":"entities\\GEO.html","category":"实体","date":"2026-04-08"},{"title":"Cron 定时任务","path":"entities\\Cron.html","category":"实体","date":"2026-04-08"},{"title":"ClawHub.ai","path":"entities\\ClawHub.ai.html","category":"实体","date":"2026-04-08"},{"title":"CLAUDE.md","path":"entities\\CLAUDE.html","category":"实体","date":"2026-04-08"},{"title":"Claude-to-IM-skill","path":"entities\\Claude-to-IM-skill.html","category":"实体","date":"2026-04-08"},{"title":"AI选品","path":"entities\\AI选品.html","category":"实体","date":"2026-04-08"},{"title":"AgentToAgent","path":"entities\\AgentToAgent.html","category":"实体","date":"2026-04-08"},{"title":"AGENTS.md","path":"entities\\AGENTS.html","category":"实体","date":"2026-04-08"},{"title":"agent-eval skill","path":"entities\\agent-eval skill.html","category":"实体","date":"2026-04-08"}];
+    
+    // Mermaid 初始化
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: 'default',
+      securityLevel: 'loose'
+    });
+  </script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills - AI 技术学习笔记</title>
+  <meta name="description" content="个人知识库公开站点，涵盖 OpenClaw、跨境电商AI、智能客服、选品方法论等主题">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.4.0/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-left">
+        <a href="/" class="logo">📚 AI 技术学习笔记</a>
+      </div>
+      <nav class="header-nav">
+        <a href="/">首页</a>
+        <a href="/wiki/entities/">实体</a>
+        <a href="/wiki/topics/">主题</a>
+        <a href="/wiki/sources/">素材</a>
+        <button class="search-btn" onclick="toggleSearch()">🔍 搜索</button>
+      </nav>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+  </header>
+  
+  <div class="search-overlay" id="searchOverlay" style="display:none;">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="搜索知识库..." oninput="searchWiki(this.value)">
+      <button onclick="toggleSearch()">✕</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+  
+  <main class="container">
+    <div class="content-wrapper">
+      <article class="wiki-page">
+        <header class="page-header">
+          <h1>Skills</h1>
+          <div class="page-meta">
+            <span class="category">实体</span>
+            <span class="backlinks-count">7 个反向链接</span>
+          </div>
+        </header>
+        
+        <div class="page-content">
+          <h1>Skills</h1>
+<blockquote>
+<p>OpenClaw的工具能力系统，教Agent如何使用某种能力（浏览网页、下载文件、抓取数据等）。</p>
+</blockquote>
+<h2>基本信息</h2>
+<ul>
+<li><strong>类型</strong>：扩展机制</li>
+<li><strong>本质</strong>：操作说明文档，教Agent如何使用某种能力</li>
+<li><strong>安装方式</strong>：<code>npx skills add &lt;url&gt; -s &lt;skill-name&gt;</code></li>
+</ul>
+<hr>
+<h2>核心原则</h2>
+<h3>Skills不是越多越好</h3>
+<ul>
+<li>❌ 错误：一口气装几十个，工具互相干扰</li>
+<li>✅ 正确：按领域装，每个领域选几个核心技能</li>
+</ul>
+<h3>层级隔离</h3>
+<ul>
+<li><strong>公共技能</strong>：~/.openclaw/skills/（跨Agent调用不丢包）</li>
+<li><strong>私有技能</strong>：Agent专属skills子目录（防止工具幻觉）</li>
+</ul>
+<hr>
+<h2>安装建议（2026-04-08 更新）</h2>
+<p>围绕核心工作流，只装真正高频使用的5-8个。推荐安装顺序：</p>
+<ol>
+<li><strong>安全打底</strong>：<a href="/wiki/entities\Skill Vetter.html" class="wiki-link">Skill Vetter</a>（安装前必审）</li>
+<li><strong>基础能力</strong>：Tavily Search、<a href="/wiki/entities\last30days.html" class="wiki-link">last30days</a>、agent-browser、summarize</li>
+<li><strong>进阶优化</strong>：<a href="/wiki/entities\self-improving-agent.html" class="wiki-link">self-improving-agent</a>、<a href="/wiki/entities\skill-creator.html" class="wiki-link">skill-creator</a></li>
+<li><strong>按需选装</strong>：<a href="/wiki/entities\Claude-to-IM-skill.html" class="wiki-link">Claude-to-IM-skill</a></li>
+</ol>
+<blockquote>
+<p>Skills不是越多越好：每个Skill吃上下文token，功能相近的会互相打架，装了不用的就是心理安慰。</p>
+</blockquote>
+<hr>
+<h2>推荐Skills分类</h2>
+<h3>安全性</h3>
+<ul>
+<li><strong>skill-security-auditor</strong> — 检查skills安全性</li>
+</ul>
+<h3>自我提升</h3>
+<ul>
+<li><strong>agent-self-reflection</strong> — 周期性总结对话</li>
+<li><strong>active-maintenance</strong> — 自动维护系统和记忆文件</li>
+</ul>
+<h3>联网搜索</h3>
+<ul>
+<li><strong>tavily-search</strong> — LLM专用搜索API（月1000次免费）</li>
+<li><strong>multi-search-engine</strong> — 多搜索引擎兜底</li>
+<li><strong>Agent Reach</strong> — 搜索小红书/X/YouTube/Reddit/B站</li>
+<li><strong>searxng</strong> — 本地容器搜索（建议2核2G以上服务器）</li>
+</ul>
+<h3>浏览器自动化</h3>
+<ul>
+<li><strong>agent-browser</strong> — Vercel出品，在用户浏览器环境运行</li>
+<li><strong>browser-use</strong> — 视觉方式操作网页</li>
+<li><strong>playwright-browser</strong> — 传统浏览器自动化</li>
+</ul>
+<h3>跨境电商</h3>
+<ul>
+<li><strong>amazon-sync</strong> — 亚马逊订单与库存同步</li>
+<li><strong>listing-optimizer</strong> — Listing标题/五点/关键词优化</li>
+<li><strong>ad-monitor</strong> — 广告ACOS/CTR/CVR实时监控</li>
+<li><strong>competitor-tracker</strong> — 竞品价格/上新/差评监控</li>
+</ul>
+<h3>飞书集成（8个）</h3>
+<ul>
+<li>feishu-bitable — 多维表格</li>
+<li>feishu-calendar — 日历</li>
+<li>feishu-create-doc / fetch-doc / update-doc — 云文档</li>
+<li>feishu-im-read — IM消息读取</li>
+<li>feishu-task — 任务管理</li>
+<li>feishu-troubleshoot — 问题排查</li>
+<li>feishu-channel-rules — 频道规则</li>
+</ul>
+<hr>
+<h2>不同素材中的观点</h2>
+<h3>2026-04-08 OpenClaw从新手到进阶</h3>
+<ul>
+<li>skills本质是一段操作说明，教Agent如何使用某种能力</li>
+<li>一个低质量skill可能会抢先执行，真正好用的工具反而调不到</li>
+</ul>
+<h3>2026-04-08 OpenClaw跨境电商必装技能</h3>
+<ul>
+<li>2026年3月更新后，插件生态重心转向ClawHub</li>
+<li>强制使用注入运行时，SDK重构接口收敛</li>
+</ul>
+<h3>2026-04-08 最值得安装的8个Skill技能</h3>
+<ul>
+<li>推荐按安全→基础→进阶→按需的四阶段安装顺序</li>
+<li>围绕核心工作流只装5-8个高频Skill</li>
+<li>每个Skill吃上下文token，装20个和装5个差几千token</li>
+<li>Skill Vetter列为第一阶段必须安装（安全打底）</li>
+<li>self-improving-agent位列ClawHub热门榜第一（46k+ installs）</li>
+<li>skill-creator是Anthropic官方出品，用于创建自定义Skill</li>
+</ul>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="/wiki/entities\ClawHub.ai.html" class="wiki-link">ClawHub.ai</a> — 技能市场</li>
+<li><a href="/wiki/entities\OpenClaw.html" class="wiki-link">OpenClaw</a> — AI智能体框架</li>
+<li><a href="/wiki/entities\浏览器自动化.html" class="wiki-link">浏览器自动化</a> — 浏览器类Skills</li>
+<li><a href="/wiki/entities\Skill Vetter.html" class="wiki-link">Skill Vetter</a> — Skill安全审查</li>
+<li><a href="/wiki/entities\last30days.html" class="wiki-link">last30days</a> — 社区情绪追踪</li>
+<li><a href="/wiki/entities\self-improving-agent.html" class="wiki-link">self-improving-agent</a> — Agent自我进化</li>
+<li><a href="/wiki/entities\Claude-to-IM-skill.html" class="wiki-link">Claude-to-IM-skill</a> — 远程操控</li>
+<li><a href="/wiki/entities\skill-creator.html" class="wiki-link">skill-creator</a> — 自定义Skill创建</li>
+</ul>
+
+        </div>
+        
+        <footer class="page-footer">
+          <div class="back-links">
+            <h3>🔗 反向链接 (7)</h3>
+            <p class="backlinks-desc">以下页面链接到了本页：</p>
+            <ul class="backlinks-list">
+              <li><a href="/wiki/sources\2026-04-08-最值得安装的8个Skill技能.html">最值得安装的8个Skill技能</a></li>
+<li><a href="/wiki/sources\2026-04-08-OpenClaw从新手到进阶.html">2026-04-08 OpenClaw从新手到进阶</a></li>
+<li><a href="/wiki/entities\skill-creator.html">skill-creator</a></li>
+<li><a href="/wiki/entities\Skill Vetter.html">Skill Vetter</a></li>
+<li><a href="/wiki/entities\self-improving-agent.html">self-improving-agent</a></li>
+<li><a href="/wiki/entities\ClawHub.ai.html">ClawHub.ai</a></li>
+<li><a href="/wiki/entities\Claude-to-IM-skill.html">Claude-to-IM-skill</a></li>
+            </ul>
+          </div>
+          <div class="source-link">
+            <a href="https://github.com/yourusername/kllm-wiki/blob/main/wiki/entities\Skills.md" target="_blank">
+              📄 查看原始 Markdown
+            </a>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </main>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 AI 技术学习笔记 · Powered by llm-wiki & Cloudflare Pages</p>
+    </div>
+  </footer>
+  
+  <script>
+    window.wikiIndex = [{"title":"AI 技术学习笔记 — 知识库总览","path":"overview.html","category":"其他","date":"2026-04-08"},{"title":"主题：跨境电商AI自动化","path":"topics\\跨境电商AI自动化.html","category":"主题","date":"2026-04-08"},{"title":"主题：智能客服体系","path":"topics\\智能客服体系.html","category":"主题","date":"2026-04-08"},{"title":"主题：OpenClaw生态","path":"topics\\OpenClaw生态.html","category":"主题","date":"2026-04-08"},{"title":"主题：AI选品方法论","path":"topics\\AI选品方法论.html","category":"主题","date":"2026-04-08"},{"title":"2026-04-08 龙虾","path":"sources\\2026-04-08-龙虾.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 飞书系列Skills","path":"sources\\2026-04-08-飞书系列Skills.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商龙虾版","path":"sources\\2026-04-08-跨境电商龙虾版.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商工作","path":"sources\\2026-04-08-跨境电商工作.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商×OpenClaw完整自动化方案","path":"sources\\2026-04-08-跨境电商完整自动化方案.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商全部数据","path":"sources\\2026-04-08-跨境电商全部数据.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境电商skill","path":"sources\\2026-04-08-跨境电商skill.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 跨境卖家的六大痛点","path":"sources\\2026-04-08-跨境卖家六大痛点.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 群蹲需求","path":"sources\\2026-04-08-群蹲需求.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 给OpenClaw开天眼","path":"sources\\2026-04-08-给OpenClaw开天眼.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 纯代码小白30天搭亚马逊AI系统","path":"sources\\2026-04-08-纯代码小白30天搭亚马逊AI系统.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 目录导航","path":"sources\\2026-04-08-目录导航.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 用OpenClaw搭跨境电商团队","path":"sources\\2026-04-08-用OpenClaw搭跨境电商团队.html","category":"素材","date":"2026-04-08"},{"title":"最值得安装的8个Skill技能","path":"sources\\2026-04-08-最值得安装的8个Skill技能.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 智能客服系统","path":"sources\\2026-04-08-智能客服系统.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 市场&营销人怎么玩虾","path":"sources\\2026-04-08-市场&营销人怎么玩虾.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 基于OpenClaw构建RAG智能客服系统","path":"sources\\2026-04-08-基于OpenClaw构建RAG智能客服.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 基于CC的浏览器自动化选型推荐","path":"sources\\2026-04-08-基于CC的浏览器自动化选型推荐.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 一套可复制的正确选品底层逻辑","path":"sources\\2026-04-08-一套可复制的正确选品底层逻辑.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 WhatsApp智能客服机器人","path":"sources\\2026-04-08-WhatsApp智能客服机器人.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 QBotClaw 浏览器龙虾","path":"sources\\2026-04-08-QBotClaw-浏览器龙虾.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 OpenClaw跨境电商必装技能","path":"sources\\2026-04-08-OpenClaw跨境电商必装技能.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 OpenClaw构建自我迭代AI助手","path":"sources\\2026-04-08-OpenClaw构建自我迭代AI助手.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 OpenClaw从新手到进阶","path":"sources\\2026-04-08-OpenClaw从新手到进阶.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 CRM系统说明","path":"sources\\2026-04-08-CRM系统说明.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 AI选品实战指南","path":"sources\\2026-04-08-AI选品实战指南.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 9格分镜法","path":"sources\\2026-04-08-9格分镜法.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 15款跨境电商运营工具","path":"sources\\2026-04-08-15款跨境电商运营工具.html","category":"素材","date":"2026-04-08"},{"title":"2026-04-08 13个AI助手","path":"sources\\2026-04-08-13个AI助手.html","category":"素材","date":"2026-04-08"},{"title":"飞书多维表格","path":"entities\\飞书多维表格.html","category":"实体","date":"2026-04-08"},{"title":"飞书AI系统","path":"entities\\飞书AI系统.html","category":"实体","date":"2026-04-08"},{"title":"选品SOP","path":"entities\\选品SOP.html","category":"实体","date":"2026-04-08"},{"title":"端侧智能体","path":"entities\\端侧智能体.html","category":"实体","date":"2026-04-08"},{"title":"浏览器龙虾","path":"entities\\浏览器龙虾.html","category":"实体","date":"2026-04-08"},{"title":"浏览器自动化","path":"entities\\浏览器自动化.html","category":"实体","date":"2026-04-08"},{"title":"智能客服","path":"entities\\智能客服.html","category":"实体","date":"2026-04-08"},{"title":"微信Clawbot","path":"entities\\微信Clawbot.html","category":"实体","date":"2026-04-08"},{"title":"多Agent协作","path":"entities\\多Agent协作.html","category":"实体","date":"2026-04-08"},{"title":"workspace","path":"entities\\workspace.html","category":"实体","date":"2026-04-08"},{"title":"WhatsApp客服","path":"entities\\WhatsApp客服.html","category":"实体","date":"2026-04-08"},{"title":"VOC分析","path":"entities\\VOC分析.html","category":"实体","date":"2026-04-08"},{"title":"SOUL.md","path":"entities\\SOUL.html","category":"实体","date":"2026-04-08"},{"title":"Skills","path":"entities\\Skills.html","category":"实体","date":"2026-04-08"},{"title":"skill-creator","path":"entities\\skill-creator.html","category":"实体","date":"2026-04-08"},{"title":"Skill Vetter","path":"entities\\Skill Vetter.html","category":"实体","date":"2026-04-08"},{"title":"sessions_send","path":"entities\\sessions_send.html","category":"实体","date":"2026-04-08"},{"title":"self-improving-agent","path":"entities\\self-improving-agent.html","category":"实体","date":"2026-04-08"},{"title":"RAG","path":"entities\\RAG.html","category":"实体","date":"2026-04-08"},{"title":"QBotClaw","path":"entities\\QBotClaw.html","category":"实体","date":"2026-04-08"},{"title":"OpenViking","path":"entities\\OpenViking.html","category":"实体","date":"2026-04-08"},{"title":"OpenClaw","path":"entities\\OpenClaw.html","category":"实体","date":"2026-04-08"},{"title":"NotebookLM","path":"entities\\NotebookLM.html","category":"实体","date":"2026-04-08"},{"title":"Memory 记忆系统","path":"entities\\Memory.html","category":"实体","date":"2026-04-08"},{"title":"last30days","path":"entities\\last30days.html","category":"实体","date":"2026-04-08"},{"title":"HEARTBEAT.md","path":"entities\\HEARTBEAT.html","category":"实体","date":"2026-04-08"},{"title":"GEO","path":"entities\\GEO.html","category":"实体","date":"2026-04-08"},{"title":"Cron 定时任务","path":"entities\\Cron.html","category":"实体","date":"2026-04-08"},{"title":"ClawHub.ai","path":"entities\\ClawHub.ai.html","category":"实体","date":"2026-04-08"},{"title":"CLAUDE.md","path":"entities\\CLAUDE.html","category":"实体","date":"2026-04-08"},{"title":"Claude-to-IM-skill","path":"entities\\Claude-to-IM-skill.html","category":"实体","date":"2026-04-08"},{"title":"AI选品","path":"entities\\AI选品.html","category":"实体","date":"2026-04-08"},{"title":"AgentToAgent","path":"entities\\AgentToAgent.html","category":"实体","date":"2026-04-08"},{"title":"AGENTS.md","path":"entities\\AGENTS.html","category":"实体","date":"2026-04-08"},{"title":"agent-eval skill","path":"entities\\agent-eval skill.html","category":"实体","date":"2026-04-08"}];
+    
+    // Mermaid 初始化
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: 'default',
+      securityLevel: 'loose'
+    });
+  </script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+{
+  "main": {
+    "id": "45a85abc3dc10ad1",
+    "type": "split",
+    "children": [
+      {
+        "id": "c6c91297d944bd6d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c3d5b420fecd169a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/entities/sessions_send.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "sessions_send"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dca22dd064fa7bc7",
+    "type": "split",
+    "children": [
+      {
+        "id": "6f0b6854e6f1088e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2ab3fbc2b77b5560",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "3022b8e6f000d5bb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "a0789fc21832588d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "2d678a58f317b02b",
+    "type": "split",
+    "children": [
+      {
+        "id": "f7181e1733e41060",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5be77ef3e60f414c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "wiki/entities/sessions_send.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "sessions_send 的反向链接列表"
+            }
+          },
+          {
+            "id": "a69116108d777abc",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "wiki/entities/sessions_send.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "sessions_send 的出链列表"
+            }
+          },
+          {
+            "id": "49027280ab91cbea",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "0a302a8f034cf6d1",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "12256842422560b8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "wiki/entities/sessions_send.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "sessions_send 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "c3d5b420fecd169a",
+  "lastOpenFiles": [
+    "docs/wiki/entities/Claude-to-IM-skill.html",
+    "docs/wiki/entities/last30days.html",
+    "docs/wiki/entities/self-improving-agent.html",
+    "docs/wiki/entities/Skill Vetter.html",
+    "docs/wiki/entities/skill-creator.html",
+    "docs/wiki/sources/2026-04-08-最值得安装的8个Skill技能.html",
+    "make.md",
+    "wiki/entities/skill-creator.md",
+    "wiki/entities/Claude-to-IM-skill.md",
+    "wiki/entities/self-improving-agent.md",
+    "wiki/entities/last30days.md",
+    "wiki/entities/Skill Vetter.md",
+    "wiki/sources/2026-04-08-最值得安装的8个Skill技能.md",
+    "raw/wechat/2026-04-08-最值得安装的8个Skill技能.md",
+    "node_modules/glob/dist/esm/walker.js.map",
+    "node_modules/glob/dist/esm/walker.js",
+    "node_modules/glob/dist/esm/walker.d.ts.map",
+    "node_modules/glob/dist/esm/walker.d.ts",
+    "node_modules/glob/dist/esm/processor.js.map",
+    "node_modules/minimatch/README.md",
+    "node_modules/minimatch/LICENSE.md",
+    "index.md",
+    "2026-04-08 OpenClaw构建自我迭代AI助手.md",
+    "wiki/entities/Skills.md",
+    "2026-04-08 基于OpenClaw构建RAG智能客服.md",
+    "docs/构建成功.md",
+    "node_modules/glob/README.md",
+    "node_modules/glob/LICENSE.md",
+    "node_modules/marked/man/marked.1.md",
+    "node_modules/lru-cache/LICENSE.md",
+    "node_modules/balanced-match/README.md",
+    "node_modules/balanced-match/LICENSE.md",
+    "hexo-site/README.md",
+    "apparent-accretion/node_modules/property-information/readme.md",
+    "apparent-accretion/node_modules/crossws/README.md",
+    "apparent-accretion/node_modules/mdn-data/README.md",
+    "apparent-accretion/src/assets/background.svg",
+    "apparent-accretion/src/assets/astro.svg",
+    "apparent-accretion/public/favicon.svg",
+    "raw/articles/640.png",
+    "raw/articles/微信图片_20260326165531_4322_262.jpg"
+  ]
+}
