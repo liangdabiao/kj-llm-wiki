@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/synthesis/Skills深度报告.md",
+                "file": "wiki/overview.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Skills深度报告"
+              "title": "overview"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "wiki/synthesis/Skills深度报告.md",
+                "file": "wiki/overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Skills深度报告 的反向链接列表"
+              "title": "overview 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "wiki/synthesis/Skills深度报告.md",
+                "file": "wiki/overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Skills深度报告 的出链列表"
+              "title": "overview 的出链列表"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/synthesis/Skills深度报告.md",
+                "file": "wiki/overview.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Skills深度报告 的大纲"
+              "title": "overview 的大纲"
             }
           }
         ]
@@ -185,15 +185,22 @@
   },
   "active": "c3d5b420fecd169a",
   "lastOpenFiles": [
-    "wiki/entities/sessions_send.md",
+    "README.md",
+    "wiki/sources/2026-04-08-目录导航.md",
+    "wiki/sources/2026-04-08-15款跨境电商运营工具.md",
+    "index.md",
+    "make.md",
+    "log.md",
+    "wiki/overview.md",
     "wiki/synthesis/Skills深度报告.md",
+    "2026-04-08 OpenClaw构建自我迭代AI助手.md",
+    "wiki/entities/sessions_send.md",
     "docs/wiki/entities/Claude-to-IM-skill.html",
     "docs/wiki/entities/last30days.html",
     "docs/wiki/entities/self-improving-agent.html",
     "docs/wiki/entities/Skill Vetter.html",
     "docs/wiki/entities/skill-creator.html",
     "docs/wiki/sources/2026-04-08-最值得安装的8个Skill技能.html",
-    "make.md",
     "wiki/entities/skill-creator.md",
     "wiki/entities/Claude-to-IM-skill.md",
     "wiki/entities/self-improving-agent.md",
@@ -207,8 +214,6 @@
     "node_modules/glob/dist/esm/walker.d.ts",
     "node_modules/minimatch/README.md",
     "node_modules/minimatch/LICENSE.md",
-    "index.md",
-    "2026-04-08 OpenClaw构建自我迭代AI助手.md",
     "wiki/entities/Skills.md",
     "2026-04-08 基于OpenClaw构建RAG智能客服.md",
     "docs/构建成功.md",
@@ -216,11 +221,6 @@
     "node_modules/glob/LICENSE.md",
     "node_modules/marked/man/marked.1.md",
     "node_modules/lru-cache/LICENSE.md",
-    "node_modules/balanced-match/README.md",
-    "node_modules/balanced-match/LICENSE.md",
-    "hexo-site/README.md",
-    "apparent-accretion/node_modules/property-information/readme.md",
-    "apparent-accretion/node_modules/crossws/README.md",
     "apparent-accretion/src/assets/background.svg",
     "apparent-accretion/src/assets/astro.svg",
     "apparent-accretion/public/favicon.svg",

@@ -150,6 +150,106 @@ llm-wiki-skill/
 - [wechat-article-to-markdown](https://github.com/jackwener/wechat-article-to-markdown) — 微信公众号提取
 - youtube-transcript — YouTube 字幕提取
 
+## 当前知识库
+
+本仓库同时也是一个正在运行的知识库（主题：AI 技术学习笔记），包含 OpenClaw 生态、跨境电商自动化、智能客服等内容。
+
+### 知识库结构
+
+```
+D:\kllm-wiki/
+├── raw/                    # 原始素材（29 篇，AI 不修改）
+│   ├── articles/           # 网页文章
+│   ├── wechat/             # 微信公众号
+│   └── ...
+├── wiki/                   # AI 生成的知识库（63+ 页）
+│   ├── entities/           # 实体页（30 个：人物、工具、概念）
+│   ├── topics/             # 主题页（4 个：知识领域）
+│   ├── sources/            # 素材摘要（28 篇）
+│   ├── comparisons/        # 对比分析
+│   └── synthesis/          # 深度综合报告
+├── index.md                # 索引
+├── log.md                  # 操作日志
+└── .wiki-schema.md         # 知识库配置
+```
+
+### 如何使用知识库
+
+本知识库通过 llm-wiki skill 驱动，在 Claude Code 中使用。核心工作流：
+
+| 你说的话 | AI 做的事 |
+|---------|----------|
+| 给一个链接或文件路径 | 提取内容，生成摘要页、实体页、主题页，更新索引 |
+| "关于 XX"、"查询 XX" | 搜索 wiki 目录，综合回答并标注来源 |
+| "深度分析 XX"、"综述 XX" | 跨素材生成深度报告，保存到 `wiki/synthesis/` |
+| "检查知识库" | 检测孤立页面、断链、矛盾信息 |
+| "知识库状态" | 统计素材和页面数量、展示最近活动 |
+| "画个知识图谱" | 生成 Mermaid 关系图 |
+
+**日常用法**：直接在对话中给链接或文件，AI 会自动消化并整理到知识库中。也可以用 Obsidian 打开本目录，实时查看双向链接图谱。
+
+---
+
+## 静态站点构建
+
+### build-site.js — Markdown 转 HTML 站点
+
+`scripts/build-site.js` 将 `wiki/` 下的 Markdown 文件转换为完整的静态 HTML 站点，输出到 `docs/` 目录。
+
+**核心功能**：
+
+- Markdown → HTML 转换（基于 marked）
+- `[[双向链接]]` 自动转换为可点击链接
+- Mermaid 图表渲染
+- 反向链接索引（每个页面底部展示"谁链接到了这里"）
+- 搜索功能（前端实时搜索）
+- 响应式布局（移动端适配）
+- 自动分类索引（实体/主题/素材/对比/综合）
+
+**使用方法**：
+
+```bash
+# 构建
+node scripts/build-site.js
+
+# 本地预览
+npx serve docs
+
+# 快速更新（一行搞定）
+node scripts/build-site.js && git add docs/ wiki/ && git commit -m "update: 更新知识库" && git push
+```
+
+**输出结构**：
+
+```
+docs/
+├── index.html              # 首页（统计 + 分类索引）
+├── css/style.css           # 样式
+├── js/main.js              # 搜索和交互
+└── wiki/
+    ├── entities/           # 实体页 HTML
+    ├── topics/             # 主题页 HTML
+    ├── sources/            # 素材页 HTML
+    └── synthesis/          # 综合报告 HTML
+```
+
+**部署流程**：`wiki/*.md` → `build-site.js` → `docs/*.html` → 推送 GitHub → Cloudflare Pages 自动部署（约 30 秒）。
+
+**依赖**：`marked` 和 `glob`（首次运行自动安装，无需手动处理）。
+
+### make.md — 构建说明与自动化方案
+
+`make.md` 记录了站点的构建流程、更新原理和自动化配置方案。
+
+**内容包括**：
+
+- **更新原理**：解释了从 Markdown 源文件到线上站点的完整链路（md → 脚本 → HTML → GitHub → Cloudflare）
+- **操作步骤**：新增文章、修改文章后的具体命令
+- **GitHub Actions 自动化**：提供了 `.github/workflows/deploy.yml` 配置，当 `wiki/` 目录有更新时自动触发构建和部署
+- **核心原则**：`wiki/` 是人类可读的源文件，`docs/` 是构建输出，两者通过 `build-site.js` 桥接
+
+---
+
 ## License
 
 MIT
