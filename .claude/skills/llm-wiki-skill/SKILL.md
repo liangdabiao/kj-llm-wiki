@@ -54,7 +54,7 @@ bash ${SKILL_DIR}/setup.sh
 
 依赖 skill / 工具：
 - `baoyu-url-to-markdown` — 普通网页、X/Twitter、部分知乎提取
-- `wechat-article-to-markdown` — 微信公众号提取
+- `agent-browser` — 微信公众号提取（首选）、其他反爬网站备用
 - `youtube-transcript` — YouTube 字幕提取
 
 即使部分依赖缺失，skill 仍可工作（用户可以手动粘贴文本内容）。
@@ -245,47 +245,121 @@ bash ${SKILL_DIR}/scripts/adapter-state.sh classify-run <source_id> <exit_code> 
 
 **URL 类素材**（统一走来源总表，不手写域名表）：
 
+> **优先 Markdown 化**（所有 URL 的首选提取方式）：
+> 遇到任何 URL，先尝试使用在线 Markdown 化工具提取内容，成功率最高且速度最快。
+> 
+> **使用方式**：
+> ```bash
+> # 方法1：Jina AI（推荐，成功率最高）
+> curl -s "https://r.jina.ai/<URL>"
+> # 示例：curl -s "https://r.jina.ai/https://mp.weixin.qq.com/s/xxx"
+> 
+> # 方法2：markdown.new
+> # 访问 https://markdown.new/<URL> 获取 Markdown 内容
+> ```
+> 
+> **提取优先级**：
+> 1. 先尝试 `r.jina.ai/<URL>`（支持 HTTPS URL）
+> 2. 如果失败，尝试 `markdown.new/<URL>`
+> 3. 如果都失败，再走 baoyu-url-to-markdown 或 agent-browser
+> 
+> **判断标准**：如果返回的 Markdown 内容长度 > 500 字符，视为提取成功，直接使用
+>
 > **Chrome 提示**（仅当 `adapter_name=baoyu-url-to-markdown` 时）：
 > adapter-state.sh check 已通过 `lsof -i :9222 -sTCP:LISTEN` 确认 Chrome 调试端口状态。
 > 如果 check 返回 `env_unavailable`，直接按 `fallback_hint` 引导用户，不要自行检测 Chrome。
 > 如果 check 返回 `available`，正常调用外挂。baoyu-url-to-markdown 会自己处理 Chrome 启动，**继续执行，不要等待用户确认**。
 > 如果提取仍然失败，提示用户：`open -na "Google Chrome" --args --remote-debugging-port=9222`
 
-> **agent-browser 备用提取**（当外挂失败或微信公众号等反爬网站时）：
-> 本地已安装 `agent-browser`（Vercel 出品的浏览器自动化 CLI），可用于直接打开网页并提取内容。
-> 
-> **使用方式**：
+> **agent-browser 提取**（微信公众号首选，其他来源备用）：
+> `agent-browser`（Vercel 出品的浏览器自动化 CLI）可直接打开网页并提取内容。
+>
+> 完整使用说明请参考 [agent-browser.md](llm-wiki-skill/agent-browser.md)，包含：
+> - 核心命令（open、snapshot、click、fill、type 等）
+> - 元素定位（语义定位器、ARIA role、text、label 等）
+> - 等待策略（load、networkidle、DOMContentLoaded）
+> - 认证状态保持（Chrome profile、session persistence）
+> - 高级功能（网络拦截、截图、调试等）
+>
+> **常用命令速览**：
 > ```bash
 > # 打开网页并等待加载
 > agent-browser open "<URL>" && agent-browser wait --load networkidle
-> 
+>
 > # 提取页面完整文本（使用 snapshot 获取无障碍树）
 > agent-browser snapshot
-> 
-> # 或者获取特定元素的文本
+>
+> # 获取特定元素文本
 > agent-browser get text <selector>
+> agent-browser find text "按钮文字" click
+>
+> # 保持登录态（使用 Chrome profile）
+> agent-browser --profile Default open "<URL>"
 > ```
-> 
+>
 > **适用场景**：
-> - 微信公众号文章（绕过安全验证）
+> - 微信公众号文章（首选，绕过安全验证）
 > - 需要登录态才能访问的页面
 > - 动态 SPA 网站（JS 异步加载）
 > - 其他自动提取工具失败时的备用方案
-> 
+>
 > **优势**：
 > - 在用户真实浏览器环境中运行，不丢失登录态
 > - 支持 DOM 定位与内容理解
 > - 27.2k star，400万+用户
 
 - 如果 `source_category=manual_only` → 不调用外挂，直接使用 `fallback_hint`
-- 如果 `adapter_name=wechat-article-to-markdown` → 执行 `wechat-article-to-markdown "<URL>"`
+- 如果 `adapter_name=agent-browser` → 执行 `agent-browser open "<URL>" && agent-browser wait --load networkidle && agent-browser snapshot`
 - 如果 `adapter_name=youtube-transcript` → 调用 `youtube-transcript`
 - 如果 `adapter_name=baoyu-url-to-markdown` → 调用 `baoyu-url-to-markdown`
-- **如果上述工具失败或不可用** → 尝试使用 `agent-browser` 打开网页并提取内容
+- **如果上述工具失败或不可用** → 尝试使用 `agent-browser` 作为备用方案
 
 **本地文件**：
 - 统一走 `bash ${SKILL_DIR}/scripts/source-registry.sh match-file "<path>"`
 - 命中后直接读取，不调用外挂
+
+> **MinerU 文档解析**（PDF/Word/PPT/图片等文档的高级提取）：
+> 当用户提交的文件是 PDF、Word、PPT、图片等需要特殊解析的格式时，使用 MinerU API 进行高质量文档解析。
+>
+> **Token 配置**：
+> - 在项目根目录 `.env` 文件中配置 `MINERU_TOKEN`
+> - Token 从 [mineru.net](https://mineru.net) 申请
+> - 使用方式：`export MINERU_TOKEN=$(cat .env | grep MINERU_TOKEN | cut -d '=' -f2)`
+>
+> **完整 API 文档**请参考 [mineru.md](llm-wiki-skill/mineru.md)，包含：
+> - 精准解析 API（需 Token，支持单文件/批量、表格/公式/多格式输出）
+> - Agent 轻量解析 API（免 Token，IP 限频）
+> - 详细参数说明和使用示例
+>
+> **适用场景**：
+> - PDF 文档（特别是扫描件、复杂排版、包含表格/公式/图表的文档）
+> - Word 文档（.doc, .docx）
+> - PPT 文件（.ppt, .pptx）
+> - 图片文件（png/jpg/jpeg/jp2/webp/gif/bmp）
+> - 需要深度结构化提取的文档
+>
+> **快速使用**：
+> 
+> **精准解析 API**（需要 Token）：
+> ```bash
+> # 1. 提交解析任务
+> curl -X POST 'https://mineru.net/api/v4/extract/task' \
+>   --header 'Authorization: Bearer $MINERU_TOKEN' \
+>   --header 'Content-Type: application/json' \
+>   -d '{"url": "<文件URL>", "model_version": "vlm"}'
+> 
+> # 2. 轮询获取结果
+> curl 'https://mineru.net/api/v4/extract/task/<task_id>' \
+>   --header 'Authorization: Bearer $MINERU_TOKEN'
+> ```
+> 
+> **Agent 轻量解析 API**（免 Token，IP 限频）：
+> ```bash
+> curl -X POST 'https://mineru.net/api/v1/agent/parse/file' \
+>   -F "file=@<文件路径>"
+> ```
+>
+> **判断标准**：当文件是 PDF/Word/PPT/图片格式，且需要高质量解析时使用 MinerU
 
 **纯文本粘贴**：
 - 统一视为 `plain_text`

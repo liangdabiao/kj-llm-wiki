@@ -115,7 +115,7 @@ default_install_hint() {
       printf '%s\n' "重新运行当前平台的 llm-wiki 安装命令，确认 ${adapter_name} 已准备到技能目录"
       ;;
     wechat_article)
-      printf '%s\n' "先安装 uv，再执行：uv tool install ${WECHAT_TOOL_URL}"
+      printf '%s\n' "npm install -g agent-browser"
       ;;
     youtube_video)
       printf '%s\n' "重新运行当前平台的 llm-wiki 安装命令，确认 ${adapter_name} 已准备到技能目录"
@@ -133,7 +133,10 @@ env_install_hint() {
     web_article|x_twitter|zhihu_article)
       printf '%s\n' '先执行：open -na "Google Chrome" --args --remote-debugging-port=9222'
       ;;
-    wechat_article|youtube_video)
+    wechat_article)
+      printf '%s\n' "npm install -g agent-browser"
+      ;;
+    youtube_video)
       printf '%s\n' "先安装 uv：brew install uv"
       ;;
     *)
@@ -193,16 +196,11 @@ EOF
     optional_adapter)
       case "$source_id" in
         wechat_article)
-          if ! has_uv; then
-            state="env_unavailable"
-            detail="缺少 uv，当前无法准备微信公众号自动提取环境"
-            recovery_action="先补环境；现在也可以直接走手动入口"
-            install_hint="$(env_install_hint "$source_id")"
-          elif ! dependency_installed "$dependency_name" "$dependency_type"; then
+          if ! dependency_installed "$dependency_name" "$dependency_type"; then
             state="not_installed"
             detail="未找到 ${adapter_name}"
             recovery_action="先补安装；现在也可以直接走手动入口"
-            install_hint="$(default_install_hint "$source_id" "$adapter_name")"
+            install_hint="npm install -g agent-browser"
           else
             state="available"
             detail="${adapter_name} 已可用"

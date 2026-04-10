@@ -82,10 +82,16 @@ Heartbeat（实时收集30分钟）→ Memory（存储）→ Cron（每日反思
 - QMD属于实验功能，search纯BM25，reranker受chunk大小影响
 - 目前的记忆系统都还未解决遗忘、图谱、时序等问题
 
+### 2026-04-10 AI Harness 到底是个啥
+- Harness 的"会话记忆"采用双轨结构：完整日志（Full Log）存硬盘留底 + 工作记忆（Working Memory）精简版只保留关键情报
+- 这种设计与 OpenClaw Memory 的"每日记忆+长期记忆"两级结构异曲同工
+- 记忆系统的核心挑战是上下文膨胀（Context Bloat），需要裁剪+去重+摘要来控制
+
 ---
 
 ## 相关页面
 
+- [[AI Harness]] — Harness 中的会话记忆组件
 - [[SOUL.md]] — 人格配置
 - [[USER.md]] — 用户偏好
 - [[Cron]] — 定时反思任务
